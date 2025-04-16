@@ -1,5 +1,7 @@
 // components/DownloadButton.tsx
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
 
 interface ButtonProps {
   imgSrc: string;
@@ -11,20 +13,32 @@ interface ButtonProps {
 const DownloadButton: React.FC<ButtonProps> = ({
   imgSrc,
   imgHoverSrc,
-  width = "300px",
-  height = "120px",
+  width = '300px',
+  height = '120px',
 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100); // Delay fade-in
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <a className="relative group block" style={{ width, height }}>
+    <a
+      className={`relative group block transition-opacity duration-1000 ease-out ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+      style={{ width, height }}
+    >
       <img
         src={imgSrc}
-        className="block group-hover:hidden absolute inset-0 w-full h-full object-contain"
         alt="Unduh"
+        className="absolute inset-0 w-full h-full object-contain group-hover:opacity-0 transition-opacity duration-300"
       />
       <img
         src={imgHoverSrc}
-        className="hidden group-hover:block absolute inset-0 w-full h-full object-contain"
         alt="Unduh Hover"
+        className="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       />
     </a>
   );
