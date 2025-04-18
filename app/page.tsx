@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import DownloadButton from "./home/components/unduh";
-import Header from "../app/header/components/header/index";
+import Header from "./components/header/index";
 
 export default function Home() {
   return (
@@ -10,8 +10,8 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center h-screen pt-20"> {/* Tambahkan pt agar tidak ketimpa header */}
         <DownloadButton
-          imgSrc="/images/button.png"
-          imgHoverSrc="/images/button-hover.png"
+          imgSrc="/images/unduh.png"
+          imgHoverSrc="/images/unduh-hover.png"
         />
       </div>
     </div>
