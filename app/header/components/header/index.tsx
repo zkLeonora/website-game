@@ -18,13 +18,13 @@ const Header = () => {
         <nav className="flex gap-4 text-white drop-shadow">
           <Link
             href="/"
-            className="px-4 py-2 rounded-full hover:bg-black/20 transition"
+            className="px-4 py-2 rounded-full hover:bg-white/20 transition"
           >
             Home
           </Link>
           <Link
             href="/games"
-            className="px-4 py-2 rounded-full hover:bg-black/20 transition"
+            className="px-4 py-2 rounded-full hover:bg-white/20 transition"
           >
             Games
           </Link>
