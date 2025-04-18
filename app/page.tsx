@@ -24,12 +24,16 @@ export default function Home() {
         <h2 className="text-4xl font-bold">Info Game</h2>
       </section>
 
-      {/* Section 3: Karakter */}
-      <section id="karakter" className="min-h-screen bg-gray-800 text-white flex items-center justify-center">
-        <h2 className="text-4xl font-bold">Karakter</h2>
+      {/* Section 3: Fitur Game */}
+      <section id="fitur-game" className="min-h-screen bg-gray-800 text-white flex items-center justify-center">
+        <h2 className="text-4xl font-bold">Fitur Game</h2>
       </section>
 
-      {/* Section 4: Akun */}
+      {/* Section 4: Karakter */}
+      <section id="karakter" className="min-h-screen bg-gray-700 text-white flex items-center justify-center">
+        <h2 className="text-4xl font-bold">Karakter</h2>
+      </section>
+      {/* Section 5: Akun */}
       <section id="akun" className="min-h-screen bg-gray-700 text-white flex items-center justify-center">
         <h2 className="text-4xl font-bold">Akun</h2>
       </section>
