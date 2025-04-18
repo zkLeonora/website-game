@@ -26,17 +26,17 @@ const Header = () => {
             href="/info-games"
             className="px-4 py-2 rounded-full hover:bg-white/20 transition"
           >
-            Infor Game
+            Info Game
           </Link>
           <Link
             href="/about"
-            className="px-4 py-2 rounded-full hover:bg-black/20 transition"
+            className="px-4 py-2 rounded-full hover:bg-white/20 transition"
           >
             Karakter
           </Link>
           <Link
             href="/about"
-            className="px-4 py-2 rounded-full hover:bg-black/20 transition"
+            className="px-4 py-2 rounded-full hover:bg-white/20 transition"
           >
             Akun
           </Link>
