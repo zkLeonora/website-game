@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Leyndell - RPG Game",
-  description: "Leyndell - RPG Dungeon Crawler, temukan petualangan seru di dunia fantasi."
+  description: "Leyndell - RPG Dungeon Crawler, temukan petualangan seru di dunia fantasi.",
 };
 
 export default function RootLayout({
@@ -24,9 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        {/* Menambahkan favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
