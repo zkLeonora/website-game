@@ -6,10 +6,10 @@ import Image from 'next/image';
 const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-300">
-<div className="w-full px-3 md:px-6 py-4 flex items-center justify-between">
+<div className="w-full px-3 md:px-6 py-3 flex items-center justify-between">
 
         <Image
-          src="/images/logo2.png"
+          src="/images/logo.png"
           alt="Leyndell Logo"
           width={200}
           height={50}
