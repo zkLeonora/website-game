@@ -3,6 +3,7 @@
 import Image from "next/image";
 import DownloadButton from "./home/components/unduh";
 import Nav from "./components/header/index";
+import InfoGame from "./components/InfoGame/InfoGame";
 
 export default function Home() {
   return (
@@ -20,9 +21,7 @@ export default function Home() {
       </section>
 
       {/* Section 2: Info Game */}
-      <section id="info-game" className="min-h-screen bg-black text-white flex items-center justify-center">
-        <h2 className="text-4xl font-bold">Info Game</h2>
-      </section>
+      <InfoGame />
 
       {/* Section 3: Fitur Game */}
       <section id="fitur-game" className="min-h-screen bg-gray-800 text-white flex items-center justify-center">
