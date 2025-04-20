@@ -25,7 +25,7 @@ export default function InfoGameSection() {
           deskripsi game di sini
         </p>
 
-        {/* 
+        {/* MIKIR2 DULU
         <div className="grid md:grid-cols-3 gap-6">
           <FeatureCard title="Eksplorasi Dungeon" description="Masuki dungeon berbahaya dan temukan harta tersembunyi." />
           <FeatureCard title="Beragam Karakter" description="Gunakan berbagai karakter unik dengan skill yang berbeda." />
