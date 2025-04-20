@@ -4,6 +4,7 @@ import Image from "next/image";
 import DownloadButton from "./home/components/unduh";
 import Nav from "./components/header/index";
 import InfoGame from "./components/InfoGame/InfoGame";
+import FiturGame from "./components/FiturGame/FiturGame";
 
 export default function Home() {
   return (
@@ -24,14 +25,13 @@ export default function Home() {
       <InfoGame />
 
       {/* Section 3: Fitur Game */}
-      <section id="fitur-game" className="min-h-screen bg-gray-800 text-white flex items-center justify-center">
-        <h2 className="text-4xl font-bold">Fitur Game</h2>
-      </section>
+      <FiturGame />
 
       {/* Section 4: Karakter */}
       <section id="karakter" className="min-h-screen bg-gray-700 text-white flex items-center justify-center">
         <h2 className="text-4xl font-bold">Karakter</h2>
       </section>
+
       {/* Section 5: Akun */}
       <section id="akun" className="min-h-screen bg-gray-700 text-white flex items-center justify-center">
         <h2 className="text-4xl font-bold">Akun</h2>
