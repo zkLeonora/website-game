@@ -30,11 +30,6 @@ export default function Home() {
 
       {/* Section 4: Karakter */}
       <Karakter />
-
-      {/* Section 5: Akun */}
-      <section id="akun" className="min-h-screen bg-gray-700 text-white flex items-center justify-center">
-        <h2 className="text-4xl font-bold">Akun</h2>
-      </section>
     </main>
   );
 }
