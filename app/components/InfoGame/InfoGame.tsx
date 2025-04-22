@@ -12,27 +12,26 @@ export default function InfoGameSection() {
       id="info-game"
       className="min-h-screen text-white px-4 py-12"
       style={{
-        backgroundImage: 'url("/images/UI-5.png")',
-        backgroundSize: 'cover',
+        backgroundImage: 'url("/images/UI-8.png")',
+        backgroundSize: 'full',
         backgroundPosition: 'center',
       }}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className={`text-4xl font-bold mb-8 text-center ${pressStart.className}`}>
-          Apa itu Leyndell?
-        </h2>
-        <p className={`text-gray-300 text-center ${pressStart.className}`}>
-          deskripsi game di sini
-        </p>
+<div className="max-w-6xl mx-auto">
+  <h2 className={`text-4xl font-bold mb-4 text-center ${pressStart.className}`}>
+    Apa itu 
+  </h2>
 
-        {/* MIKIR2 DULU
-        <div className="grid md:grid-cols-3 gap-6">
-          <FeatureCard title="Eksplorasi Dungeon" description="Masuki dungeon berbahaya dan temukan harta tersembunyi." />
-          <FeatureCard title="Beragam Karakter" description="Gunakan berbagai karakter unik dengan skill yang berbeda." />
-          <FeatureCard title="Upgrade Senjata" description="Tingkatkan senjatamu untuk menghadapi boss yang kuat!" />
-        </div>
-        */}
-      </div>
+  {/* Tambahkan logo di sini */}
+  <div className="flex justify-center mb-6">
+    <img src="/images/logo.png" alt="Logo Game" className="h-20" />
+  </div>
+
+  <p className={`text-gray-300 text-center ${pressStart.className}`}>
+    deskripsi game di sini
+  </p>
+</div>
+
     </section>
   );
 }
