@@ -1,19 +1,37 @@
-'use client';
-
-import Image from "next/image";
-import DownloadButton from "./home/components/unduh";
+import { connectToDatabase } from "@/lib/db"; // Import koneksi dari lib/db
+import { FC } from "react";
 import Nav from "./components/header/index";
+import DownloadButton from "./home/components/unduh";
 import InfoGame from "./components/InfoGame/InfoGame";
 import FiturGame from "./components/FiturGame/FiturGame";
 import Karakter from "./components/Karakter/Karakter";
 
-export default function Home() {
+const Home: FC = async () => {
+  let dbStatus: string = "Error connecting to the database"; // Default status
+
+  try {
+    // Tes koneksi dengan database
+    await connectToDatabase();
+    dbStatus = "Database Connected!"; // Jika berhasil
+  } catch (error) {
+    dbStatus = "Failed to connect to the database"; // Jika gagal
+    console.error("Error connecting to database:", error);
+  }
+
   return (
     <main className="w-screen overflow-x-hidden">
+      {/* Menampilkan status koneksi database */}
+      <div className="text-center py-4 text-lg font-bold">
+        <p>{dbStatus}</p>
+      </div>
+
       <Nav />
 
       {/* Section 1: Home */}
-      <section id="home" className="w-screen h-screen bg-[url('/images/base-bg-1.jpg')] bg-cover bg-center bg-no-repeat">
+      <section
+        id="home"
+        className="w-screen h-screen bg-[url('/images/base-bg-1.jpg')] bg-cover bg-center bg-no-repeat"
+      >
         <div className="flex justify-center items-center h-full pt-20">
           <DownloadButton
             imgSrc="/images/unduh.png"
@@ -32,4 +50,6 @@ export default function Home() {
       <Karakter />
     </main>
   );
-}
+};
+
+export default Home;
