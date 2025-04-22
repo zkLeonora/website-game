@@ -9,8 +9,7 @@ import Karakter from "./components/Karakter/Karakter";
 const Home: FC = async () => {
   try {
     // Tes koneksi dengan database
-    await connectToDatabase();
-    console.log("Database Connected!"); // Log status koneksi di terminal
+    await connectToDatabase();// Log status koneksi di terminal
   } catch (error) {
     console.error("Error connecting to the database:", error); // Log jika gagal koneksi
   }
