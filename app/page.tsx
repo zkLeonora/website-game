@@ -7,24 +7,16 @@ import FiturGame from "./components/FiturGame/FiturGame";
 import Karakter from "./components/Karakter/Karakter";
 
 const Home: FC = async () => {
-  let dbStatus: string = "Error connecting to the database"; // Default status
-
   try {
     // Tes koneksi dengan database
     await connectToDatabase();
-    dbStatus = "Database Connected!"; // Jika berhasil
+    console.log("Database Connected!"); // Log status koneksi di terminal
   } catch (error) {
-    dbStatus = "Failed to connect to the database"; // Jika gagal
-    console.error("Error connecting to database:", error);
+    console.error("Error connecting to the database:", error); // Log jika gagal koneksi
   }
 
   return (
     <main className="w-screen overflow-x-hidden">
-      {/* Menampilkan status koneksi database */}
-      <div className="text-center py-4 text-lg font-bold">
-        <p>{dbStatus}</p>
-      </div>
-
       <Nav />
 
       {/* Section 1: Home */}
