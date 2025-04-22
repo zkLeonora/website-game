@@ -36,7 +36,7 @@ export default function InfoGameSection() {
              </div>
                 <img 
                 src="/images/mc-1.png" 
-                alt="Leyndell Preview" 
+                alt="Karakter Preview" 
                 className="w-full h-full object-contain rounded-lg z-0 relative"
                 />
              </div>
