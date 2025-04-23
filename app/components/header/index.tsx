@@ -77,8 +77,8 @@ const Nav = () => {
                   </>
                 ) : (
                   <>
-                    <Link href="/login" className="block py-1 hover:text-blue-900">Login</Link>
-                    <Link href="/signup" className="block py-1 hover:text-blue-900">Daftar</Link>
+                    <Link href="/login" className="block py-1 hover:text-[#0B3775]">Login</Link>
+                    <Link href="/signup" className="block py-1 hover:text-[#0B3775]">Daftar</Link>
                   </>
                 )}
               </div>
