@@ -20,7 +20,7 @@ export default function LoginPage() {
         >
     <div className="rounded-2xl shadow-xl p-8 w-full max-w-md shadow-3x1" style={{ backgroundColor: "#1f1b38" }}>
         <h1 className="text-3xl font-bold text-center text-white mb-6">
-          Masuk ke Akun
+          Masuk
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
