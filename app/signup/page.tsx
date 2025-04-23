@@ -27,7 +27,7 @@ export default function SignupPage() {
     const data = await response.json();
     if (response.ok) {
       console.log("Signup successful:", data);
-      redirect("/");  // Arahkan ke halaman utama setelah berhasil daftar
+      redirect("/login");  // Arahkan ke halaman utama setelah berhasil daftar
     } else {
       console.error("Signup failed:", data.message);
       setError(data.message);
