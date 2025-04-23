@@ -53,7 +53,7 @@ const Nav = () => {
               {/* Dropdown */}
               <div className="absolute right-0 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg py-2 px-4 text-sm w-40 z-50 transition-all ease-in-out duration-300 transform scale-95 group-hover:scale-100">
                 <Link href="/login" className="block py-1 hover:text-blue-900">Login</Link>
-                <Link href="/register" className="block py-1 hover:text-blue-900">Daftar</Link>
+                <Link href="/signup" className="block py-1 hover:text-blue-900">Daftar</Link>
               </div>
             </div>
           )}
