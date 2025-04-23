@@ -25,6 +25,7 @@ export default function LoginPage() {
     const data = await response.json();
     if (response.ok) {
       console.log("Login successful:", data);
+      localStorage.setItem("user", JSON.stringify(data.user)); // Simpan user ke localStorage
       // Redirect ke path root ("/") setelah login berhasil
       redirect("/");  // Arahkan ke root path
     } else {
