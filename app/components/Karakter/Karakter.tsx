@@ -1,6 +1,6 @@
 'use client';
-import { Press_Start_2P } from 'next/font/google'
-import Image from 'next/image'
+import { Press_Start_2P } from 'next/font/google';
+import Image from 'next/image';
 
 const pressStart = Press_Start_2P({ 
   subsets: ['latin'], 
@@ -31,18 +31,31 @@ export default function InfoGameSection() {
 
         {/* KANAN: ILUSTRASI */}
         <div className="md:w-1/2 flex justify-center items-center">
-          <div className="relative w-[400px] h-[400px]">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] 
-                border-[3px] border-white rounded-full z-10">
+          <div className="group relative w-[400px] h-[400px] [perspective:1000px]">
+            <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+              {/* Sisi Depan */}
+              <div className="absolute w-full h-full rounded-lg overflow-hidden backface-hidden">
+                <Image 
+                  src="/images/kartu-belakang.png" 
+                  alt="Karakter Depan" 
+                  fill
+                  className="object-contain z-0"
+                />
+              </div>
+
+              {/* Sisi Belakang */}
+              <div className="absolute w-full h-full rounded-lg overflow-hidden rotate-y-180 backface-hidden">
+                <Image 
+                  src="/images/kartu-karakter-1.png" 
+                  alt="Karakter Belakang" 
+                  fill
+                  className="object-contain z-0"
+                />
+              </div>
             </div>
-            <Image 
-              src="/images/mc-1.png" 
-              alt="Karakter Preview" 
-              fill
-              className="object-contain rounded-lg z-0 relative"
-            />
           </div>
         </div>
+
       </div>
     </section>
   );
