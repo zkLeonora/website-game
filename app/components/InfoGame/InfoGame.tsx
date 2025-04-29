@@ -56,14 +56,14 @@ export default function InfoGameSection() {
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <div className="group w-70 h-96 [perspective:1000px]"> {/* Menyesuaikan ukuran kartu ke vertikal */}
+          <div className="group w-full h-100 [perspective:1000px]"> {/* Menyesuaikan ukuran kartu ke vertikal */}
             <div
               className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
             >
               {/* Bagian Belakang Kartu */}
               <div className="absolute w-full h-full bg-white rounded-xl overflow-hidden shadow-lg backface-hidden">
                 <img
-                  src="/images/kartu-belakang.png"
+                  src="/images/dialog-belakang.png"
                   alt="Kartu Depan"
                   className="w-full h-full object-cover object-center"
                 />
@@ -72,7 +72,7 @@ export default function InfoGameSection() {
               {/* Bagian Depan Kartu */}
               <div className="absolute w-full h-full bg-white rounded-xl overflow-hidden shadow-lg [transform:rotateY(180deg)] backface-hidden">
                 <img
-                  src="/images/kartu-depan.png"
+                  src="/images/dialog.png"
                   alt="Kartu Belakang"
                   className="w-full h-full object-cover object-center"
                 />
