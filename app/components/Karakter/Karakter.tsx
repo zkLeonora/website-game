@@ -13,7 +13,7 @@ export default function InfoGameSection() {
       id="karakter"
       className="min-h-screen text-white px-4 py-12 flex items-center justify-center"
       style={{
-        backgroundImage: 'url("/images/UI-7.png")',
+        backgroundImage: 'url("/images/UI-10.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
