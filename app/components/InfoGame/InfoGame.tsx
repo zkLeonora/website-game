@@ -42,7 +42,7 @@ export default function InfoGameSection() {
       <div className="max-w-6xl mx-auto">
         <h2
           className={`text-4xl font-bold mb-8 text-center ${pressStart.className}`}
-          style={{ marginTop: '4rem' }}
+          style={{ marginTop: '6rem' }}
         >
           Tentang Game
         </h2>
@@ -52,7 +52,9 @@ export default function InfoGameSection() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           } ${pressStart.className}`}
         >
-          <div className="bg-[#0c1c6f] border border-white rounded-lg px-6 py-5 shadow-xl max-w-3xl mx-auto text-xs sm:text-sm leading-relaxed">
+          <div
+            className="bg-[#0c1c6f] border border-white rounded-lg px-6 py-5 shadow-xl max-w-3xl mx-auto text-xs sm:text-sm leading-relaxed mt-40"  // Margin-top ditambahkan disini
+          >
             <p className="mb-4">
               Dunia ini telah diliputi kegelapan. Monster dan makhluk asing menguasai dungeon yang terlupakan. Tapi harapan belum padam.
             </p>
