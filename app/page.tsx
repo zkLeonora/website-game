@@ -6,6 +6,7 @@ import DownloadButton from "./home/components/unduh";
 import InfoGame from "./components/InfoGame/InfoGame";
 import FiturGame from "./components/FiturGame/FiturGame";
 import Karakter from "./components/Karakter/Karakter";
+import ShootingStars from "./components/effects/bintangjatuh";
 
 const Home: FC = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -33,6 +34,9 @@ const Home: FC = () => {
         id="home"
         className="relative w-screen h-screen bg-[url('/images/base-bg-1.png')] bg-cover bg-center bg-no-repeat overflow-hidden"
       >
+
+        <ShootingStars />
+
         {/* Layer Awan (Efek scroll dihapus) */}
         <img
           src="/images/clouds.png"
