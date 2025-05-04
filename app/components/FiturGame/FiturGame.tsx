@@ -1,12 +1,24 @@
 'use client';
-import { Press_Start_2P } from 'next/font/google'
+import { useState } from 'react';
+import { Press_Start_2P } from 'next/font/google';
 
 const pressStart = Press_Start_2P({ 
   subsets: ['latin'], 
   weight: '400'
 });
 
-export default function InfoGameSection() {
+const images = [
+  '/images/preview-game.jpg',
+  '/images/preview-game-2.jpg',
+  '/images/preview-game-3.jpg'
+];
+
+export default function FiturGameSection() {
+  const [index, setIndex] = useState(0);
+
+  const nextImage = () => setIndex((prev) => (prev + 1) % images.length);
+  const prevImage = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
+
   return (
     <section
       id="fitur-game"
@@ -29,12 +41,26 @@ export default function InfoGameSection() {
         </div>
 
         {/* KANAN: GAMBAR / ILUSTRASI */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 flex flex-col items-center">
           <img 
-            src="/images/preview-game.jpg" 
-            alt="Leyndell Preview" 
+            src={images[index]} 
+            alt={`Preview ${index + 1}`} 
             className="w-full h-auto rounded-lg shadow-lg"
           />
+          <div className="flex gap-4 mt-4">
+            <button 
+              onClick={prevImage} 
+              className="bg-white/10 hover:bg-white/20 px-3 py-1 rounded"
+            >
+              ←
+            </button>
+            <button 
+              onClick={nextImage} 
+              className="bg-white/10 hover:bg-white/20 px-3 py-1 rounded"
+            >
+              →
+            </button>
+          </div>
         </div>
       </div>
     </section>
