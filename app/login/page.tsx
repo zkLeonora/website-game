@@ -52,7 +52,7 @@ export default function LoginPage() {
           <input
             type="text"  // Ubah menjadi 'text' untuk input username
             placeholder="Username"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full p-3 border border-gray-300 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -60,7 +60,7 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full p-3 border border-gray-300 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
