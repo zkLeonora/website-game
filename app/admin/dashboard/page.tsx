@@ -17,9 +17,9 @@ export default function AdminDashboard() {
   }, [router]);
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex h-screen" style={{ backgroundColor: "#171628", color: "white" }}>
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 p-6 flex flex-col justify-between">
+      <aside className="w-64 p-6 flex flex-col justify-between" style={{ backgroundColor: "#1f1e33" }}>
         <div>
           <h2 className="text-2xl font-bold mb-6 text-red-500">Admin Panel</h2>
           <nav className="space-y-4">
@@ -50,20 +50,22 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto">
-        <h1 className="text-3xl font-bold mb-4">Selamat datang, {admin?.username} 👋</h1>
+        <h1 className="text-3xl font-bold mb-4 text-white">
+          Selamat datang, <span className="text-red-400">{admin?.username}</span> 👋
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-gray-800 rounded-lg p-4 shadow">
+          <div className="rounded-lg p-4 shadow" style={{ backgroundColor: "#1f1e33" }}>
             <h2 className="text-xl text-red-400 mb-2">Total Pengguna</h2>
-            <p className="text-3xl font-bold">128</p>
+            <p className="text-3xl font-bold text-white">128</p>
           </div>
-          <div className="bg-gray-800 rounded-lg p-4 shadow">
+          <div className="rounded-lg p-4 shadow" style={{ backgroundColor: "#1f1e33" }}>
             <h2 className="text-xl text-red-400 mb-2">Total Download</h2>
-            <p className="text-3xl font-bold">452</p>
+            <p className="text-3xl font-bold text-white">452</p>
           </div>
-          <div className="bg-gray-800 rounded-lg p-4 shadow">
+          <div className="rounded-lg p-4 shadow" style={{ backgroundColor: "#1f1e33" }}>
             <h2 className="text-xl text-red-400 mb-2">Transaksi Hari Ini</h2>
-            <p className="text-3xl font-bold">Rp 1.230.000</p>
+            <p className="text-3xl font-bold text-white">Rp 1.230.000</p>
           </div>
         </div>
       </main>
