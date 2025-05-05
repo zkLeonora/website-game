@@ -50,7 +50,7 @@ export default function InfoGameSection() {
             Karakter
           </h2>
           <p className={`text-gray-300 ${pressStart.className}`}>
-            Mau terjun langsung ke medan pertempuran, mendukung rekan timmu, atau di antara keduanya, semua bisa kamu lakukan di Rift.
+            Mau terjun langsung ke medan pertempuran, mendukung rekan timmu, atau di antara keduanya, semua bisa kamu lakukan di Leyndell.
           </p>
         </div>
 
