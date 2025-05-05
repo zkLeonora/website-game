@@ -16,13 +16,13 @@ export async function POST(req: Request) {
   const { username, password } = await req.json();
 
   try {
-    // Mengambil admin berdasarkan username
+    // select admin berdasarkan username
     const [rows] = await pool.execute<mysql.RowDataPacket[]>( 
       "SELECT * FROM admin WHERE username = ?", 
       [username]
     );
 
-    // Cek apakah admin ada
+    // Cek data admin
     if (rows.length === 0) {
       return NextResponse.json(
         { message: "Admin not found" },
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     const admin = rows[0];
 
-    // Verifikasi password (tanpa hashing)
+    // Verifikasi password
     if (password !== admin.password) {
       return NextResponse.json(
         { message: "Invalid password" },
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error: unknown) {
-    // Menangani error yang lebih aman
+    // Menangani error 
     console.error("Database error:", error);
     if (error instanceof Error) {
       return NextResponse.json(
