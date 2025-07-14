@@ -3,10 +3,10 @@ import mysql from "mysql2/promise";
 
 // Koneksi pool ke database
 const pool = mysql.createPool({
-  host: "localhost",  // ganti dengan host MySQL kamu
-  user: "root",       // ganti dengan username MySQL kamu
-  password: "gengkapak12345",  // ganti dengan password MySQL kamu
-  database: "WEBSITE_LEYNDELL",  // ganti dengan nama database kamu
+  host: "localhost",  // Host
+  user: "root",       // Username MySQL
+  password: "gengkapak12345",  // Password MySQL
+  database: "WEBSITE_LEYNDELL",  // Databse Name
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
