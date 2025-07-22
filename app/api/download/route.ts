@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-  const filePath = path.join(process.cwd(), 'public/files/gamenya.exe'); // file .exe
+  const filePath = path.join(process.cwd(), 'public/files/leyndell.exe');// file .exe
   const fileBuffer = fs.readFileSync(filePath);
 
   return new Response(fileBuffer, {
