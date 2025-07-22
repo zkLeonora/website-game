@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Press_Start_2P } from 'next/font/google';
-import Image from 'next/image';
 
 const pressStart = Press_Start_2P({
   subsets: ['latin'],
@@ -11,14 +10,13 @@ const pressStart = Press_Start_2P({
 
 export default function InfoGameSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsFlipped(true); // Flip segera saat section muncul
+            setIsVisible(true);
           }
         });
       },
@@ -47,42 +45,27 @@ export default function InfoGameSection() {
         {/* KIRI: TEKS */}
         <div className="md:w-1/2 text-center md:text-left space-y-6">
           <h2 className={`text-4xl font-bold mb-4 tracking-widest ${pressStart.className}`}>
-            Karakter
+            Preview Game
           </h2>
           <p className={`text-gray-300 ${pressStart.className}`}>
-            Mau terjun langsung ke medan pertempuran, mendukung rekan timmu, atau di antara keduanya, semua bisa kamu lakukan di Leyndell.
+            Saksikan cuplikan pertarungan seru, karakter unik, dan dunia Leyndell yang memikat dalam PV resmi kami!
           </p>
         </div>
 
-        {/* KANAN: KARTU */}
+        {/* KANAN: VIDEO */}
         <div className="md:w-1/2 flex justify-center items-center">
-          <div className="relative w-[400px] h-[400px] [perspective:1000px]">
-            <div
-              className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
-                isFlipped ? 'rotate-y-180' : ''
-              }`}
+          {isVisible && (
+            <video
+              className="rounded-lg w-[400px] h-[400px] object-cover shadow-lg"
+              controls
+              autoPlay
+              muted
+              loop
             >
-              {/* Sisi Belakang */}
-              <div className="absolute w-full h-full rounded-lg overflow-hidden [backface-visibility:hidden]">
-                <Image
-                  src="/images/kartu-belakang.png"
-                  alt="Kartu Belakang"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-
-              {/* Sisi Depan */}
-              <div className="absolute w-full h-full rounded-lg overflow-hidden rotate-y-180 [backface-visibility:hidden]">
-                <Image
-                  src="/images/kartu-karakter-1.png"
-                  alt="Kartu Depan"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
+              <source src="/videos/preview.mp4" type="video/mp4" />
+              Browsermu tidak mendukung tag video.
+            </video>
+          )}
         </div>
       </div>
     </section>
