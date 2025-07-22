@@ -106,11 +106,6 @@ export default function AdminDashboard() {
         <div className="mt-6 rounded-lg p-6 shadow bg-[#1f1e33] border-2 border-white w-full">
           <h2 className="text-xl text-white-400 mb-2">Kontainer C</h2>
         </div>
-
-        {/* Kontainer D */}
-        <div className="mt-6 rounded-lg p-6 shadow bg-[#1f1e33] border-2 border-white w-full">
-          <h2 className="text-xl text-white-400 mb-2">Kontainer D</h2>
-        </div>
       </main>
     </div>
   );
