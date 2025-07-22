@@ -58,7 +58,7 @@ const Nav = () => {
           <a href="#home" className="px-4 py-2 rounded-full hover:bg-white/20 transition">Home</a>
           <a href="#info-game" className="px-4 py-2 rounded-full hover:bg-white/20 transition">Info Game</a>
           <a href="#fitur-game" className="px-4 py-2 rounded-full hover:bg-white/20 transition">Fitur Game</a>
-          <a href="#karakter" className="px-4 py-2 rounded-full hover:bg-white/20 transition">Preview</a>
+          <a href="#preview" className="px-4 py-2 rounded-full hover:bg-white/20 transition">Preview</a>
 
           {/* AKUN */}
           {!isScrolled && (
