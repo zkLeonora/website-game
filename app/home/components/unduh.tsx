@@ -24,8 +24,7 @@ const DownloadButton: React.FC<ButtonProps> = ({
 
   return (
     <a
-      href="/api/download"
-      download="Leyndell.exe"
+      href="/transaksi"
       className={`relative group block transition-opacity duration-[2000ms] ease-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
