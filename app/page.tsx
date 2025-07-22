@@ -5,7 +5,7 @@ import Nav from "./components/header/index";
 import DownloadButton from "./home/components/unduh";
 import InfoGame from "./components/InfoGame/InfoGame";
 import FiturGame from "./components/FiturGame/FiturGame";
-import Karakter from "./components/Karakter/Karakter";
+import Preview from "./components/Preview/Preview-game";
 import ShootingStars from "./components/effects/bintangjatuh";
 
 const Home: FC = () => {
@@ -66,7 +66,7 @@ const Home: FC = () => {
       <FiturGame />
 
       {/* Section 4: Karakter */}
-      <Karakter />
+      <Preview />
     </main>
   );
 };
