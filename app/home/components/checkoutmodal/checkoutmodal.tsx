@@ -9,18 +9,16 @@ interface CheckoutModalProps {
   onClose: () => void
   order: {
     itemName: string
-    quantity: number
-    bonus: number
-    nickname: string
+    username: string
     userId: string
     method: string
     price: number
-    tax: number
+    // tax dihapus
   }
 }
 
 export default function ModalCheckout({ isOpen, onClose, order }: CheckoutModalProps) {
-  const total = order.price + order.tax
+  const total = order.price // hanya harga saja
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
@@ -31,19 +29,14 @@ export default function ModalCheckout({ isOpen, onClose, order }: CheckoutModalP
           <p className="text-sm text-gray-300 mb-4">Mohon konfirmasi detail pesanan anda sudah benar.</p>
 
           <div className="mb-4">
-            <div className="bg-purple-800 text-purple-200 rounded px-3 py-2 text-sm font-medium w-fit mb-2">POPULAR</div>
-            <div className="text-lg font-bold">{order.quantity + order.bonus} Item</div>
-            <div className="text-sm text-gray-300">
-              ({order.quantity} + {order.bonus} Bonus)
-            </div>
+            <div className="text-lg font-bold">Item</div>
           </div>
 
           <div className="space-y-2 text-sm">
-            <div><strong>Nickname:</strong> {order.nickname}</div>
-            <div><strong>ID:</strong> {order.userId}</div>
+            <div><strong>Username:</strong> {order.username}</div>
             <div><strong>Bayar dengan:</strong> {order.method}</div>
             <div><strong>Harga:</strong> Rp. {order.price.toLocaleString()}</div>
-            <div><strong>Pajak (11%):</strong> Rp. {order.tax.toLocaleString()}</div>
+            {/* Pajak dihapus */}
           </div>
 
           <div className="mt-4 font-semibold text-lg text-red-400">
@@ -58,3 +51,4 @@ export default function ModalCheckout({ isOpen, onClose, order }: CheckoutModalP
     </Dialog>
   )
 }
+

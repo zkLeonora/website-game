@@ -152,13 +152,10 @@ const handlePlaceOrder = () => {
             onClose={() => setShowModal(false)}
             order={{
                 itemName: 'Leyndell',
-                quantity: 1,
-                bonus: 0,
-                nickname: '1 only',
+                username: '1 only',
                 userId: '52797843(2085)',
                 method: selectedMethod ?? '',
                 price: 76000,
-                tax: 8360,
             }}
             />
       </div>
