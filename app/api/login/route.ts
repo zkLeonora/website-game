@@ -14,6 +14,7 @@ const pool = mysql.createPool({
 
 export async function POST(req: Request) {
   const { username, password } = await req.json();
+  console.log("Data yang diterima API:", { username, password });
 
   try {
     // Mengambil user berdasarkan username
@@ -41,10 +42,12 @@ export async function POST(req: Request) {
     }
 
     // Jika login berhasil
-    return NextResponse.json(
-      { message: "Login successful", user: { username: user.username } },
-      { status: 200 }
-    );
+      return NextResponse.json(
+        { message: "Login successful", user: { id: user.id, username: user.username } },
+        { status: 200 }
+      );
+
+
   } catch (error: unknown) {
     // Menangani error yang lebih aman
     console.error("Database error:", error);
