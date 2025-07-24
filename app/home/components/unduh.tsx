@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ButtonProps {
   imgSrc: string;
@@ -16,15 +17,25 @@ const DownloadButton: React.FC<ButtonProps> = ({
   height = '120px',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100); // Delay fade-in
+    const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
+  const handleClick = () => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      router.push('/transaksi');
+    } else {
+      router.push('/login');
+    }
+  };
+
   return (
-    <a
-      href="/transaksi"
+    <button
+      onClick={handleClick}
       className={`relative group block transition-opacity duration-[2000ms] ease-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
@@ -40,7 +51,7 @@ const DownloadButton: React.FC<ButtonProps> = ({
         alt="Unduh Hover"
         className="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-700"
       />
-    </a>
+    </button>
   );
 };
 
