@@ -10,6 +10,8 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log("Mengirim data login:", { username, password });
   
     const response = await fetch("/api/login", {
       method: "POST",
