@@ -52,10 +52,10 @@ const Home: FC = () => {
             transition: "opacity 0.3s ease-out",  // Transisi yang smooth
           }}
         >
-          <DownloadButton
-            imgSrc="/images/unduh.png"
-            imgHoverSrc="/images/unduh-hover.png"
-          />
+      <DownloadButton
+        imgSrc="/images/unduh.png"
+        imgHoverSrc="/images/unduh-hover.png"
+      />
         </div>
       </section>
 
