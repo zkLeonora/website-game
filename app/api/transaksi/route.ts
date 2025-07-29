@@ -35,11 +35,12 @@ export async function POST(req: Request) {
 }
 export async function GET() {
   const conn = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'gengkapak12345',
-    database: 'WEBSITE_LEYNDELL',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
   });
+
 
   try {
     const [rows] = await conn.query(`
