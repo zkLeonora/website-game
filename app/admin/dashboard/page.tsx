@@ -69,9 +69,11 @@ export default function AdminDashboard() {
     { label: "Data User", key: "data-user" },
     { label: "Transaksi", key: "data-transaksi" },
     { label: "Informasi Game", key: "game" },
+    { label: "Pesan User", key: "pesan-user" },
   ];
 
   const [users, setUsers] = useState([]);
+  const [pesanUser, setPesanUser] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -124,6 +126,45 @@ useEffect(() => {
     fetchGames();
   }
 }, [activePage]);
+
+useEffect(() => {
+  const fetchPesan = async () => {
+    try {
+      const res = await fetch("/api/admin/pesan");
+      const data = await res.json();
+      setPesanUser(data);
+    } catch (err) {
+      console.error("Gagal mengambil pesan user:", err);
+    }
+  };
+
+  if (activePage === "pesan-user") {
+    fetchPesan();
+  }
+}, [activePage]);
+
+useEffect(() => {
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("/api/admin/users");
+      const data = await res.json();
+      setUsers(data); // pastikan setUsers berasal dari useState
+    } catch (error) {
+      console.error("Gagal fetch users:", error);
+    }
+  };
+
+  fetchUsers();
+}, []);
+
+
+
+const [showSendMessageModal, setShowSendMessageModal] = useState(false);
+const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+const [adminSubject, setAdminSubject] = useState("");
+const [adminMessage, setAdminMessage] = useState("");
+const [sending, setSending] = useState(false);
+const [sendSuccess, setSendSuccess] = useState<boolean | null>(null);
 
 
   return (
@@ -248,6 +289,128 @@ useEffect(() => {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        )}
+        
+        {activePage === "pesan-user" && (
+          <div className="p-6 bg-[#1f1e33] border-2 border-white rounded-lg">
+            <h2 className="text-2xl font-semibold mb-4">Pesan dari User</h2>
+            <div className="mb-4 flex justify-end">
+              <button
+                onClick={() => setShowSendMessageModal(true)}
+                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300"
+              >
+                Kirim Pesan ke User
+              </button>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full border border-white text-white">
+                <thead className="bg-[#2a2940]">
+                  <tr>
+                    <th className="border p-2">ID</th>
+                    <th className="border p-2">Username</th>
+                    <th className="border p-2">Subjek</th>
+                    <th className="border p-2">Pesan</th>
+                    <th className="border p-2">Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pesanUser.map((pesan: any) => (
+                    <tr key={pesan.id} className="hover:bg-[#3a3955]">
+                      <td className="border p-2">{pesan.id}</td>
+                      <td className="border p-2">{pesan.username}</td>
+                      <td className="border p-2">{pesan.subjek}</td>
+                      <td className="border p-2">{pesan.pesan}</td>
+                      <td className="border p-2">
+                        {new Date(pesan.created_at).toLocaleString("id-ID")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {showSendMessageModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                  <div className="bg-white text-black p-6 rounded-lg shadow-lg w-96">
+                    <h3 className="text-xl font-semibold mb-4">Kirim Pesan ke User</h3>
+                    
+                    <label className="block mb-2 text-sm font-medium">Pilih User</label>
+                    <select
+                      className="w-full border border-gray-300 rounded p-2 mb-4"
+                      value={selectedUserId || ""}
+                      onChange={(e) => setSelectedUserId(Number(e.target.value))}
+                    >
+                      <option value="">-- Pilih User --</option>
+                      {users.map((user: any) => (
+                        <option key={user.id} value={user.id}>
+                          {user.username}
+                        </option>
+                      ))}
+                    </select>
+
+                    <input
+                      type="text"
+                      placeholder="Subjek"
+                      className="w-full border border-gray-300 rounded p-2 mb-2"
+                      value={adminSubject}
+                      onChange={(e) => setAdminSubject(e.target.value)}
+                    />
+                    <textarea
+                      placeholder="Pesan"
+                      rows={4}
+                      className="w-full border border-gray-300 rounded p-2 mb-2"
+                      value={adminMessage}
+                      onChange={(e) => setAdminMessage(e.target.value)}
+                    />
+                    {sendSuccess === true && <p className="text-green-600 text-sm mb-2">Pesan terkirim!</p>}
+                    {sendSuccess === false && <p className="text-red-600 text-sm mb-2">Gagal mengirim pesan</p>}
+                    
+                    <div className="flex justify-end gap-2 mt-4">
+                      <button
+                        onClick={() => setShowSendMessageModal(false)}
+                        className="px-4 py-2 rounded bg-gray-400 text-white"
+                      >
+                        Batal
+                      </button>
+                      <button
+                        onClick={async () => {
+                          if (!selectedUserId || !adminSubject.trim() || !adminMessage.trim()) return;
+                          setSending(true);
+                          try {
+                            const res = await fetch("/api/admin/kirim-pesan", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                user_id: selectedUserId,
+                                subject: adminSubject,
+                                message: adminMessage,
+                              }),
+                            });
+                            if (res.ok) {
+                              setSendSuccess(true);
+                              setAdminSubject("");
+                              setAdminMessage("");
+                              setSelectedUserId(null);
+                            } else {
+                              setSendSuccess(false);
+                            }
+                          } catch (e) {
+                            setSendSuccess(false);
+                          } finally {
+                            setSending(false);
+                            setTimeout(() => setSendSuccess(null), 3000);
+                          }
+                        }}
+                        disabled={sending}
+                        className="px-4 py-2 rounded bg-yellow-500 hover:bg-yellow-400 text-black"
+                      >
+                        {sending ? "Mengirim..." : "Kirim"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         )}

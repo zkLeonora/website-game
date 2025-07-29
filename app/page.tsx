@@ -7,6 +7,7 @@ import InfoGame from "./components/InfoGame/InfoGame";
 import FiturGame from "./components/FiturGame/FiturGame";
 import Preview from "./components/Preview/Preview-game";
 import ShootingStars from "./components/effects/bintangjatuh";
+import ChatPopup from "./components/chat/ChatPopup";
 
 const Home: FC = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -67,6 +68,9 @@ const Home: FC = () => {
 
       {/* Section 4: Karakter */}
       <Preview />
+
+      {/* Floating chat ke admin */}
+      <ChatPopup /> 
     </main>
   );
 };

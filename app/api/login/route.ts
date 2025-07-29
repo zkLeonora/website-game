@@ -1,15 +1,14 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
-// Koneksi pool ke database
 const pool = mysql.createPool({
-  host: "localhost",  // ganti dengan host MySQL kamu
-  user: "root",       // ganti dengan username MySQL kamu
-  password: "gengkapak12345",  // ganti dengan password MySQL kamu
-  database: "WEBSITE_LEYNDELL",  // ganti dengan nama database kamu
+  host: "localhost",
+  user: "root",
+  password: "gengkapak12345",
+  database: "WEBSITE_LEYNDELL",
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
 export async function POST(req: Request) {
@@ -17,13 +16,11 @@ export async function POST(req: Request) {
   console.log("Data yang diterima API:", { username, password });
 
   try {
-    // Mengambil user berdasarkan username
-    const [rows] = await pool.execute<mysql.RowDataPacket[]>( 
-      "SELECT * FROM users WHERE username = ?", 
+    const [rows] = await pool.execute<mysql.RowDataPacket[]>(
+      "SELECT * FROM users WHERE username = ?",
       [username]
     );
 
-    // Cek apakah user ada
     if (rows.length === 0) {
       return NextResponse.json(
         { message: "User not found" },
@@ -33,7 +30,6 @@ export async function POST(req: Request) {
 
     const user = rows[0];
 
-    // Verifikasi password (tanpa hashing)
     if (password !== user.password) {
       return NextResponse.json(
         { message: "Invalid password" },
@@ -41,15 +37,28 @@ export async function POST(req: Request) {
       );
     }
 
-    // Jika login berhasil
-      return NextResponse.json(
-        { message: "Login successful", user: { id: user.id, username: user.username } },
-        { status: 200 }
-      );
+    // ✅ Buat response secara manual
+    const response = new NextResponse(JSON.stringify({
+      message: "Login successful",
+      user: { id: user.id, username: user.username },
+    }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    });
 
+    // ✅ Set cookie dengan benar
+    response.cookies.set("user_id", String(user.id), {
+      path: "/",
+      httpOnly: true,
+    });
+    response.cookies.set("username", user.username, {
+      path: "/",
+      httpOnly: true,
+    });
+
+    return response;
 
   } catch (error: unknown) {
-    // Menangani error yang lebih aman
     console.error("Database error:", error);
     if (error instanceof Error) {
       return NextResponse.json(
