@@ -11,12 +11,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Data tidak lengkap' }, { status: 400 });
   }
 
-  const conn = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'gengkapak12345',
-    database: 'WEBSITE_LEYNDELL',
-  });
+    const conn = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    });
+
 
   try {
     const [result]: any = await conn.query(

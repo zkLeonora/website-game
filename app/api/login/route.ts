@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "gengkapak12345",
-  database: "WEBSITE_LEYNDELL",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -13,7 +13,6 @@ const pool = mysql.createPool({
 
 export async function POST(req: Request) {
   const { username, password } = await req.json();
-  console.log("Data yang diterima API:", { username, password });
 
   try {
     const [rows] = await pool.execute<mysql.RowDataPacket[]>(
@@ -22,22 +21,15 @@ export async function POST(req: Request) {
     );
 
     if (rows.length === 0) {
-      return NextResponse.json(
-        { message: "User not found" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "User not found" }, { status: 400 });
     }
 
     const user = rows[0];
 
     if (password !== user.password) {
-      return NextResponse.json(
-        { message: "Invalid password" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Invalid password" }, { status: 400 });
     }
 
-    // ✅ Buat response secara manual
     const response = new NextResponse(JSON.stringify({
       message: "Login successful",
       user: { id: user.id, username: user.username },
@@ -46,7 +38,6 @@ export async function POST(req: Request) {
       headers: { "Content-Type": "application/json" }
     });
 
-    // ✅ Set cookie dengan benar
     response.cookies.set("user_id", String(user.id), {
       path: "/",
       httpOnly: true,
@@ -60,14 +51,8 @@ export async function POST(req: Request) {
 
   } catch (error: unknown) {
     console.error("Database error:", error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { message: "Internal server error", error: error.message },
-        { status: 500 }
-      );
-    }
     return NextResponse.json(
-      { message: "Unknown error occurred" },
+      { message: "Internal server error" },
       { status: 500 }
     );
   }

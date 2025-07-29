@@ -4,13 +4,13 @@ import mysql from "mysql2/promise";
 
 // Koneksi pool ke database
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "gengkapak12345",
-  database: "WEBSITE_LEYNDELL",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
 export async function POST(req: Request) {
