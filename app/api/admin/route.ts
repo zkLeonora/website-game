@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
-// Koneksi pool ke database
+// Koneksi pool ke database pakai env
 const pool = mysql.createPool({
-  host: "localhost",  // Host
-  user: "root",       // Username MySQL
-  password: "gengkapak12345",  // Password MySQL
-  database: "WEBSITE_LEYNDELL",  // Databse Name
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "WEBSITE_LEYNDELL",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -16,13 +16,11 @@ export async function POST(req: Request) {
   const { username, password } = await req.json();
 
   try {
-    // select admin berdasarkan username
-    const [rows] = await pool.execute<mysql.RowDataPacket[]>( 
-      "SELECT * FROM admin WHERE username = ?", 
+    const [rows] = await pool.execute<mysql.RowDataPacket[]>(
+      "SELECT * FROM admin WHERE username = ?",
       [username]
     );
 
-    // Cek data admin
     if (rows.length === 0) {
       return NextResponse.json(
         { message: "Admin not found" },
@@ -32,7 +30,6 @@ export async function POST(req: Request) {
 
     const admin = rows[0];
 
-    // Verifikasi password
     if (password !== admin.password) {
       return NextResponse.json(
         { message: "Invalid password" },
@@ -40,13 +37,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // Jika login berhasil
     return NextResponse.json(
       { message: "Login successful", admin: { username: admin.username } },
       { status: 200 }
     );
   } catch (error: unknown) {
-    // Menangani error 
     console.error("Database error:", error);
     if (error instanceof Error) {
       return NextResponse.json(
