@@ -160,9 +160,23 @@ useEffect(() => {
   fetchUsers();
 }, []);
 
+const handleEditStatus = async (id: number, currentStatus: string) => {
+  const newStatus = prompt("Ubah status transaksi:", currentStatus);
+  if (!newStatus || newStatus === currentStatus) return;
 
+  const res = await fetch("/api/admin/update-status", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, status: newStatus }),
+  });
 
-
+  if (res.ok) {
+    alert("Status berhasil diperbarui!");
+    // Reload data transaksi
+  } else {
+    alert("Gagal memperbarui status.");
+  }
+};
 
 const [showSendMessageModal, setShowSendMessageModal] = useState(false);
 const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
@@ -431,7 +445,9 @@ const [sendSuccess, setSendSuccess] = useState<boolean | null>(null);
                     <th className="border p-2">Username</th>
                     <th className="border p-2">Nama Game</th>
                     <th className="border p-2">Metode</th>
+                    <th className="border p-2">Status</th>
                     <th className="border p-2">Tanggal</th>
+                    <th className="border p-2">Aksi</th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -441,13 +457,22 @@ const [sendSuccess, setSendSuccess] = useState<boolean | null>(null);
                       <td className="border p-2">{trx.username}</td>
                       <td className="border p-2">{trx.nama_game}</td>
                       <td className="border p-2">{trx.metode_pembayaran}</td>
+                      <td className="border p-2">{trx.status}</td>
                       <td className="border p-2">
                         {new Date(trx.tanggal_transaksi).toLocaleString("id-ID")}
                       </td>
-
+                      <td className="border p-2">
+                        <button
+                          className="bg-red-500 hover:bg-yellow-600 text-white px-2 py-1 rounded"
+                          onClick={() => handleEditStatus(trx.id, trx.status)}
+                        >
+                          Edit
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
+
               </table>
             </div>
           </div>

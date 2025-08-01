@@ -50,7 +50,8 @@ export async function GET() {
         users.username, 
         game.nama_game, 
         transaksi.metode_pembayaran, 
-        transaksi.tanggal_transaksi
+        transaksi.tanggal_transaksi,
+        transaksi.status
       FROM transaksi 
       JOIN users ON transaksi.user_id = users.id 
       JOIN game ON transaksi.game_id = game.id
