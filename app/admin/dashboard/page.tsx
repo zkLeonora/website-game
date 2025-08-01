@@ -21,6 +21,9 @@ export default function AdminDashboard() {
   const [admin, setAdmin] = useState<{ username: string } | null>(null);
   const [timeline, setTimeline] = useState<TimelineItem[]>([]);
   const [activePage, setActivePage] = useState("dashboard");
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editedMetode, setEditedMetode] = useState("");
+
 
 
   useEffect(() => {
@@ -156,6 +159,8 @@ useEffect(() => {
 
   fetchUsers();
 }, []);
+
+
 
 
 
